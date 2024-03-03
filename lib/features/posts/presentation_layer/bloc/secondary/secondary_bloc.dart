@@ -107,23 +107,20 @@ class SecondaryBloc extends Bloc<SecondaryEvent, SecondaryState> {
 
   void addingPost(event, emit) async {
     emit(SecondaryLoading());
-    Either<Failure, Unit> failureOrUnit =
-        await addPostUseCase.addPost(event.post);
+    Either<Failure, Unit> failureOrUnit = await addPostUseCase(event.post);
 
     emit(getState(failureOrUnit, SuccessMessages.addPostSeccess));
   }
 
   void updatingPost(event, emit) async {
     emit(SecondaryLoading());
-    Either<Failure, Unit> failureOrUnit =
-        await updatePostUseCase.updatePost(event.post);
+    Either<Failure, Unit> failureOrUnit = await updatePostUseCase(event.post);
     emit(getState(failureOrUnit, SuccessMessages.updatePostSeccess));
   }
 
   void deletingPost(event, emit) async {
     emit((SecondaryLoading()));
-    Either<Failure, Unit> failureOrUnit =
-        await deletePostUseCase.deletePost(event.id);
+    Either<Failure, Unit> failureOrUnit = await deletePostUseCase(event.id);
     emit(getState(failureOrUnit, SuccessMessages.deletePostSeccess));
   }
 

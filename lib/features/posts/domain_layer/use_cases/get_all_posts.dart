@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
+import 'package:my_clean/core/base_usecase/base_usecase.dart';
 import 'package:my_clean/core/errors/failures.dart';
 import 'package:my_clean/features/posts/domain_layer/entities/post_entity.dart';
-import 'package:my_clean/features/posts/domain_layer/repositories/entity_repository.dart';
 
-class GetAllPostsUseCase {
-  PostEntityRepository postEntityRepository;
-  GetAllPostsUseCase({required this.postEntityRepository});
+class GetAllPostsUseCase extends BaseUseCase<List<PostEntity>, void> {
+  GetAllPostsUseCase({required super.postEntityRepository});
 
-  Future<Either<Failure, List<PostEntity>>> getAllPosts() async {
+  @override
+  Future<Either<Failure, List<PostEntity>>> call([k]) async {
     return await postEntityRepository.getAllPosts();
   }
 }

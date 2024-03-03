@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:my_clean/core/base_usecase/base_usecase.dart';
 import 'package:my_clean/core/errors/failures.dart';
-import 'package:my_clean/features/posts/domain_layer/repositories/entity_repository.dart';
 
-class DeletePostUseCase {
-  PostEntityRepository postEntityRepository;
-  DeletePostUseCase({required this.postEntityRepository});
+class DeletePostUseCase extends BaseUseCase<Unit, int> {
+  DeletePostUseCase({required super.postEntityRepository});
 
-  Future<Either<Failure, Unit>> deletePost(int id) async {
-    return await postEntityRepository.deletePost(id);
+  @override
+  Future<Either<Failure, Unit>> call(int k) async {
+    return await postEntityRepository.deletePost(k);
   }
 }

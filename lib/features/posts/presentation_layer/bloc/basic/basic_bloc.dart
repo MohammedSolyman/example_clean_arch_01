@@ -20,7 +20,7 @@ class BasicBloc extends Bloc<BasicEvent, BasicState> {
     emit(BasicLoading());
 
     Either<Failure, List<PostEntity>> failureOrPosts =
-        await getAllPostsUseCase.getAllPosts();
+        await getAllPostsUseCase();
     failureOrPosts.fold(
       (failure) {
         emit(BasicError(error: getErrorMessage(failure)));
